@@ -1,2 +1,2 @@
 # ksapi
-Kotak Securities Trading APIs Integration
+The libraries to integrate Kotak Securities Trading APIs.
