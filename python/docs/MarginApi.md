@@ -5,7 +5,7 @@ All URIs are relative to *https://tradeapi.kotaksecurities.com/apim*
 Method | Description
 ------------- | -------------
 [**margin_required**](MarginApi.md#margin_required) | Get Margin Required for an order by amount or quantity.
-[**get_margins**](MarginApi.md#get_margins) | Gives complete Margin Details of a Client from RMS.
+[**margin**](MarginApi.md#margin) | Gives complete Margin Details of a Client from RMS.
 
 
 # **margin_required**
@@ -87,8 +87,8 @@ Name | Type | Description  | Notes
 **503** | Trade API service is unavailable |  -  |
 **504** | Gateway timeout, trade API is unreachable |  -  |
 
-# **get_margins**
-> object get_margins()
+# **margin**
+> object margin()
 
 Get complete Margin details.
 
@@ -107,9 +107,9 @@ client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
 
 try:
     # Get Margin details.
-    client.get_margins()
+    client.margin()
 except Exception as e:
-    print("Exception when calling MarginApi->margin_required: %s\n" % e)
+    print("Exception when calling MarginApi->margin: %s\n" % e)
 ```
 
 ### Return type
