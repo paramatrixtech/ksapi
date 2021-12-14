@@ -400,12 +400,11 @@ class KSTradeApi():
              password = password, refresh_token = refresh_token)
         return token
 
-    def revoke(self, grant_type, username, password, refresh_token):
+    def revoke(self, token, token_type_hint):
         if self.consumer_secret == None:
             raise ApiValueError("Consumer Secret is None")
         auth_token = self.consumer_key+":"+self.consumer_secret
         AUTH_BASE64 = base64.b64encode(auth_token.encode("UTF-8"))
         authorization = AUTH_BASE64.decode("UTF-8")
-        revoke = ks_api_client.TokenApi(self.api_client).revoke_post(authorization = authorization, grant_type = grant_type, username = username, \
-            password = password, refresh_token = refresh_token)
+        revoke = ks_api_client.TokenApi(self.api_client).revoke_post(authorization = authorization, token = token, token_type_hint = token_type_hint)
         return revoke

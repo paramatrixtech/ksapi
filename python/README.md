@@ -14,9 +14,9 @@ Python 2.7 and 3.4+
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install git+https://github.com/osparamatrix/ks-orderapi-python.git
+pip install git+https://github.com/paramatrixtech/ksapi.git
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/osparamatrix/ks-orderapi-python.git`)
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/paramatrixtech/ksapi.git`)
 
 Then import the package:
 ```python
@@ -60,7 +60,7 @@ client.place_order(order_type = "N", instrument_token = 727, transaction_type = 
                             validity = "GFD", variety = "REGULAR", tag = "string")
 						
 # Modify an order
-client.modify_order(order_id = "", quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0)
+client.modify_order(order_id = "", price = 0, quantity = 1, disclosed_quantity = 0, trigger_price = 0, validity = "GFD")
 
 # Cancel an order
 client.cancel_order(order_id = "")
@@ -71,6 +71,18 @@ client.order_report()
 # Get Report Orders for order id
 client.order_report(order_id = "")
 
+# Get FNO Report Orders for order id
+client.order_report(order_id = "", is_fno = "Y")
+
+# Get Trade Report
+client.trade_report()
+
+# Get Trade Report for order id
+client.trade_report(order_id = "")
+
+# Get FNO Trade Report for order id
+client.trade_report(order_id = "", is_fno = "Y")
+
 # Get Margin required
 order_info = [
     {"instrument_token": 727, "quantity": 1, "price": 1300, "amount": 0, "trigger_price": 1190},
@@ -78,11 +90,29 @@ order_info = [
 ]
 client.margin_required(transaction_type = "BUY",order_info = order_info)
 
+# Get Margin
+client.margin()
+
 # Get Positions
 client.positions(position_type = "TODAYS")
 
 # Get Quote details
 client.quote(instrument_token = 110)
+
+# Get Historical data
+client.history("historicalprices",{"exchange":"bse","cocode":"476","fromdate":"01-jan-2014","todate":"08-oct-2015"})
+client.history("historicalprices-unadjusted",{"exchange":"bse","co_code":"476","date":"16-Jun-2016"})
+client.history("NSEFNO_HistoricalContinuousChart",{"symbol":"HDFC","expiry type": "near"})
+client.history("LiveorEODHistorical",{"exchange":"BSE","co_code":"5400","period":"Y","cnt":"3"})
+
+# Subscribe to instrument token's stream.
+def callback_method(message):
+    print(message)
+    print("Your logic/computation will come here.")
+client.subscribe(input_token="745,754", auth_token="", callback=callback_method)
+
+# Unsubscribe from streaming service.
+client.unsubscribe()
 
 #Terminate user's Session
 client.logout()
@@ -102,12 +132,12 @@ Class | Method | Description
 *ReportsApi* | [**order_report**](docs/ReportsApi.md#order_report) | Get order report
 *ReportsApi* | [**trade_report**](docs/ReportsApi.md#trade_report) | Get trade report
 *MarginApi* | [**margin_required**](docs/MarginApi.md#margin_required) | Get Margin Required for an order by amount or quantity.
+*MarginApi* | [**margin**](docs/MarginApi.md#margin) | Get all calculated margins.
 *PositionsApi* | [**positions**](docs/PositionsApi.md#positions) | Get&#39;s Open position.
 *QuoteApi* | [**quote**](docs/QuoteApi.md#quote_details) | Get Quote details
+*HistoricalApi* | [**history**](docs/HistoricalApi.md#history) | Get historical data.
+*StreamingApi* | [**subscribe**](docs/StreamingApi.md#subscribe) | Subscribe to streaming api of specified instrument tokens.
+*StreamingApi* | [**unsubscribe**](docs/StreamingApi.md#unsubscribe) | Unsubscribe from streaming api.
 *SessionApi* | [**logout**](docs/SessionApi.md#logout) | Invalidate Session Token
-
-
-
-
 
 
