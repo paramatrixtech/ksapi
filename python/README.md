@@ -14,9 +14,9 @@ Python 2.7 and 3.4+
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install -e "git+https://github.com/paramatrixtech/ksapi.git#egg=ks-api-client&subdirectory=./python"
+pip install -e "git+https://github.com/paramatrixtech/ksapi.git#egg=ks_api_client&subdirectory=./python"
 ```
-(you may need to run `pip` with root permission: `sudo pip install -e "git+https://github.com/paramatrixtech/ksapi.git#egg=ks-api-client&subdirectory=./python"`)
+(you may need to run `pip` with root permission: `sudo pip install -e "git+https://github.com/paramatrixtech/ksapi.git#egg=ks_api_client&subdirectory=./python"`)
 
 Then import the package:
 ```python
