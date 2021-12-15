@@ -326,7 +326,7 @@ class KSTradeApi():
     def subscribe(self, input_tokens, callback, broadcast_host=broadcast_host):
         try:
             if self.consumer_secret == None:
-                raise ApiValueError("Consumer Secret is None")
+                raise ApiValueError("Please pass the consumer secret while creating client")
             proxy = ""
             auth_token = self.consumer_key+":"+self.consumer_secret
             if self._proxy_pass or self._proxy_url or self._proxy_user:

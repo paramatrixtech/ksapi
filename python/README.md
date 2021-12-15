@@ -109,7 +109,7 @@ client.history("LiveorEODHistorical",{"exchange":"BSE","co_code":"5400","period"
 def callback_method(message):
     print(message)
     print("Your logic/computation will come here.")
-client.subscribe(input_token="745,754", auth_token="", callback=callback_method)
+client.subscribe(input_tokens="745,754", callback=callback_method)
 
 # Unsubscribe from streaming service.
 client.unsubscribe()
