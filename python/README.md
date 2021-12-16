@@ -2,7 +2,7 @@
 No description provided
 
 - API version: 1.0.1
-- Package version: 1.0.16
+- Package version: 1.1.0
 
 ## Requirements.
 
