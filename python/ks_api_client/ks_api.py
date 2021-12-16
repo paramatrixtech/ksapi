@@ -392,7 +392,7 @@ class KSTradeApi():
 
     def token(self, grant_type, username, password, refresh_token):
         if self.consumer_secret == None:
-            raise ApiValueError("Consumer Secret is None")
+            raise ApiValueError("Please pass the consumer secret while creating client")
         auth_token = self.consumer_key+":"+self.consumer_secret
         AUTH_BASE64 = base64.b64encode(auth_token.encode("UTF-8"))
         authorization = AUTH_BASE64.decode("UTF-8")
@@ -402,7 +402,7 @@ class KSTradeApi():
 
     def revoke(self, token, token_type_hint):
         if self.consumer_secret == None:
-            raise ApiValueError("Consumer Secret is None")
+            raise ApiValueError("Please pass the consumer secret while creating client")
         auth_token = self.consumer_key+":"+self.consumer_secret
         AUTH_BASE64 = base64.b64encode(auth_token.encode("UTF-8"))
         authorization = AUTH_BASE64.decode("UTF-8")

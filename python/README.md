@@ -45,8 +45,8 @@ Please follow the [installation procedure](#installation--usage) and then run th
 from ks_api_client import ks_api
 # Defining the host is optional and defaults to https://sbx.kotaksecurities.com/apim
 # See configuration.py for a list of all supported configuration parameters.
-client = ks_api.KSTradeApi(access_token = "", userid = "", \
-                consumer_key = "", ip = "127.0.0.1", app_id = "")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "", \
+                           ip = "127.0.0.1", app_id = "", consumer_secret = "")
 					 
 # Get session for user
 client.login(password = "")
@@ -56,8 +56,8 @@ client.session_2fa(access_code = "")
 
 # Place an order
 client.place_order(order_type = "N", instrument_token = 727, transaction_type = "BUY",\
-                       quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
-                            validity = "GFD", variety = "REGULAR", tag = "string")
+                   quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
+                   validity = "GFD", variety = "REGULAR", tag = "string")
 						
 # Modify an order
 client.modify_order(order_id = "", price = 0, quantity = 1, disclosed_quantity = 0, trigger_price = 0, validity = "GFD")
