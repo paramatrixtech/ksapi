@@ -1,11 +1,14 @@
-host = ["https://tradeapi.kotaksecurities.com/apim",
-        "https://sbx.kotaksecurities.com/apim"]
+host = ["https://tradeapi.kotaksecurities.com/apim","https://sbx.kotaksecurities.com/apim", "https://tradeapi.kotaksecurities.com/apim/oauth/1.0"]
 access_token = "----"
 userid = ""
 consumer_key = ""
 ip = "127.0.0.1"
 app_id = ""
-password = "@1"
+password = ""
 access_code = ""
-broadcast_host = "https://wstreamer.kotaksecurities.com/feed"
+broadcast_host = "https://wstreamer.kotaksecurities.com"
 auth_token = ":"
+proxy_url = ""
+proxy_user = ""
+proxy_pass = ""
+consumer_secret = ""
