@@ -59,6 +59,10 @@ client.session_2fa(access_code = "")
 client.place_order(order_type = "O", instrument_token = 727, transaction_type = "BUY",\
                    quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
                    validity = "GFD", variety = "REGULAR", tag = "string", product = "NORMAL", smart_order_routing="string")
+                   
+client.place_order(order_type = "N", instrument_token = 727, transaction_type = "BUY",\
+                   quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
+                   validity = "GFD", variety = "REGULAR", tag = "string")
 						
 # Modify an order
 client.modify_order(order_id = "", price = 0, quantity = 1, disclosed_quantity = 0, trigger_price = 0, validity = "GFD")
