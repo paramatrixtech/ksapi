@@ -113,6 +113,8 @@ class KSTradeApi():
         place_order  =  None
         if not 'session_token'  in self.__dict__:
             raise ApiValueError("Please invoke 'session_2fa' function first")
+        if order_type != "O" and product:
+            raise ApiValueError("Product can be supplied only if Order Type value is 'O'")
         if order_type == "O":
             order  =  NewOrder(instrumentToken  =  instrument_token, tag = tag, transactionType = transaction_type,\
                                     variety = variety, quantity = quantity, price = price, disclosedQuantity = disclosed_quantity,\
