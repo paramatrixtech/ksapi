@@ -38,10 +38,11 @@ Name | Type | Description  | Notes
  **consumer_key** | **str**|  |
  **ip** | **str**|  |
  **app_id** | **str**|  |
- **host** | **list**| List of trade API host URLs | [optional]
+ **hosts** | **list**| List of trade API host URLs | [optional] E.g. [""https://tradeapi.kotaksecurities.com/apim""]
  **proxy_url** | **str**| Proxy url  |  [optional]
  **proxy_user** | **str**| Proxy user's Username | [optional]
  **proxy_pass** | **str**| Proxy user's Password | [optional]
+ **consumer_secret** | **str** | Consumer Secret | [optional]
   
 
 
