@@ -116,7 +116,7 @@ class KSTradeApi():
         if order_type != "O" and product:
             raise ApiValueError("Product can be supplied only if Order Type value is 'O'")
         if order_type == "O" and not product:
-            raise ApiValueError("Please supply the 'product' paramater for order_type = 'O'")
+            raise ApiValueError("Please pass product paramater with order_type = 'O' OR change order_type")
         if order_type == "O":
             order  =  NewOrder(instrumentToken  =  instrument_token, tag = tag, transactionType = transaction_type,\
                                     variety = variety, quantity = quantity, price = price, disclosedQuantity = disclosed_quantity,\

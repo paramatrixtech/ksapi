@@ -20,8 +20,9 @@ Return positions of provided position type.
 
 from ks_api_client import ks_api
 
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
-                 consumer_key = "consumer_key", ip = "IP", app_id = "app_id")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
+                        proxy_pass = '', consumer_secret = "")
 
 #First initialize session and generate session token
 
