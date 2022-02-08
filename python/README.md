@@ -49,17 +49,14 @@ client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip 
                         hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
                         proxy_pass = '', consumer_secret = "")
 					 
-# Get session for user
+# Initiate login and generate OTT
 client.login(password = "")
 
-#Generated session token
-client.session_2fa(access_code = "")
+#Complete login and generate session token
+client.session_2fa()
+#You can choose to use a day-to-day access code by adding accesscode parameter : client.session_2fa(access_code = "")
 
-# Place an order
-client.place_order(order_type = "O", instrument_token = 727, transaction_type = "BUY",\
-                   quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
-                   validity = "GFD", variety = "REGULAR", tag = "string", product = "NORMAL", smart_order_routing="string")
-                   
+# Place an order                   
 client.place_order(order_type = "N", instrument_token = 727, transaction_type = "BUY",\
                    quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
                    validity = "GFD", variety = "REGULAR", tag = "string")
@@ -104,12 +101,6 @@ client.positions(position_type = "TODAYS")
 # Get Quote details
 client.quote(instrument_token = 110)
 
-# Get Historical data
-client.history("historicalprices",{"exchange":"bse","cocode":"476","fromdate":"01-jan-2014","todate":"08-oct-2015"})
-client.history("historicalprices-unadjusted",{"exchange":"bse","co_code":"476","date":"16-Jun-2016"})
-client.history("NSEFNO_HistoricalContinuousChart",{"symbol":"HDFC","expiry type": "near"})
-client.history("LiveorEODHistorical",{"exchange":"BSE","co_code":"5400","period":"Y","cnt":"3"})
-
 # Subscribe to instrument token's stream.
 def callback_method(message):
     print(message)
@@ -124,7 +115,7 @@ client.logout()
 ```
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://sbx.kotaksecurities.com/apim*
+All URIs are relative to "host" parameter
 
 Class | Method | Description
 ------------ | ------------- | -------------
