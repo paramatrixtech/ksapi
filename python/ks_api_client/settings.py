@@ -1,4 +1,4 @@
-host = ["https://tradeapi.kotaksecurities.com/apim","https://sbx.kotaksecurities.com/apim", "https://tradeapi.kotaksecurities.com/apim/oauth/1.0"]
+hosts = ["https://tradeapi.kotaksecurities.com/apim"]
 access_token = "----"
 userid = ""
 consumer_key = ""
@@ -6,7 +6,7 @@ ip = "127.0.0.1"
 app_id = ""
 password = ""
 access_code = ""
-broadcast_host = "https://wstreamer.kotaksecurities.com"
+broadcast_host = "https://wstreamer.kotaksecurities.com/feed"
 auth_token = ":"
 proxy_url = ""
 proxy_user = ""
