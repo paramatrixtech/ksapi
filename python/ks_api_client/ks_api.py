@@ -4,6 +4,8 @@ import json
 import os
 import socketio
 from urllib3 import make_headers
+import urllib.parse
+import requests
 
 from ks_api_client.exceptions import ApiException, ApiValueError
 from ks_api_client.models import NewMTFOrder, NewNormalOrder, NewOrder, \
@@ -333,10 +335,8 @@ class KSTradeApi():
                 raise ApiValueError("Please pass the consumer secret while creating client")
             proxy = ""
             auth_token = self.consumer_key+":"+self.consumer_secret
+            session = requests.session()
             if self._proxy_pass or self._proxy_url or self._proxy_user:
-                import urllib.parse
-                import requests
-                session = requests.session()
                 scheme = ""
                 parsed = urllib.parse.urlparse(self._proxy_url)
                 if not parsed.scheme:
