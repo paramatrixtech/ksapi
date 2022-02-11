@@ -408,6 +408,8 @@ class KSTradeApi():
             print(f'Other error occurred: {err}')
 
     def unsubscribe(self):
+        if 'sio' not in self.__dict__:
+            raise ApiValueError("Please subscribe first")
         self.sio.disconnect()
 
 
