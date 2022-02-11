@@ -361,9 +361,7 @@ class KSTradeApi():
                 data=PAYLOAD)
             jsonResponse = response.json()
             # Check if we got access token
-            if jsonResponse['result']['token'] is None:
-                print('Token not found')
-            else:
+            if 'result' in jsonResponse and 'token' in jsonResponse['result'] and jsonResponse['result']['token']:
                 parsed_broadcast_host = urllib.parse.urlparse(broadcast_host)
                 socketio_path = parsed_broadcast_host.path
                 self.sio = socketio.Client(
@@ -390,6 +388,8 @@ class KSTradeApi():
                 self.sio.connect(broadcast_host, 
                         headers={'Authorization': 'Bearer ' + jsonResponse['result']['token']},
                         transports=["websocket"], socketio_path=socketio_path)
+            else:
+                print('Token not found')
         except Exception as err:
             print(f'Other error occurred: {err}')
 
