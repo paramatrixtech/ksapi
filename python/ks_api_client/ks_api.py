@@ -78,6 +78,8 @@ class KSTradeApi():
         return login_response_res
 		
     def session_2fa(self, access_code=None):
+        if not 'one_time_token' in self.__dict__:
+            raise ApiValueError("Please invoke 'login' function first")
         if self.one_time_token:
             generate_session_res = None
             if not access_code:
@@ -101,6 +103,8 @@ class KSTradeApi():
             raise ApiValueError("No one time token found. Please invoke 'session_login_api' function first")
 
     def logout(self):
+        if not 'session_token' in self.__dict__:
+            raise ApiValueError("Please invoke 'session_2fa' function first")
         logout  =  ks_api_client.SessionApi(self.api_client).session_logout(self.session_token,self.consumer_key,\
 						self.ip, self.app_id, self.userid)
         return logout
@@ -198,6 +202,8 @@ class KSTradeApi():
 #-------------------POSITIONS---------------------
 
     def positions(self, position_type):
+        if not 'session_token' in self.__dict__:
+            raise ApiValueError("Please invoke 'session_2fa' function first")
         if position_type  ==  'TODAYS':
             positions_res  =  ks_api_client.PositionsApi(self.api_client).positions_today(self.consumer_key,self.session_token)
         elif position_type  ==  'OPEN':
@@ -211,6 +217,8 @@ class KSTradeApi():
 #---------------------ORDERS REPORTS----------------------------
 
     def order_report(self, order_id = None, is_fno = ""):
+        if not 'session_token' in self.__dict__:
+            raise ApiValueError("Please invoke 'session_2fa' function first")
         if order_id is None:
             order_report  =  ks_api_client.ReportsApi(self.api_client).get_order_reports(self.consumer_key, \
                     self.session_token)
@@ -228,6 +236,8 @@ class KSTradeApi():
 #--------------------------TRADES REPORTS---------------------------------
 
     def trade_report(self, order_id  = None, is_fno = ""):
+        if not 'session_token' in self.__dict__:
+            raise ApiValueError("Please invoke 'session_2fa' function first")
         if order_id is None:
             trade_report  =  ks_api_client.ReportsApi(self.api_client).get_trade_report(consumerKey = self.consumer_key,
                 sessionToken = self.session_token)
@@ -243,6 +253,8 @@ class KSTradeApi():
 #-----------------------Margins------------------------
 
     def margin_required(self, transaction_type, order_info):
+        if not 'session_token' in self.__dict__:
+            raise ApiValueError("Please invoke 'session_2fa' function first")
         req_margin  =  ReqMargin(transactionType = transaction_type, orderInfo = self.convertArray(order_info))
         if not isinstance(req_margin, ReqMargin):
             raise ApiValueError("ReqMargin with type ",type(req_margin)," is not valid.")
@@ -257,6 +269,8 @@ class KSTradeApi():
 #-----------------------Quote Api------------------------	
 
     def quote(self, instrument_token, quote_type = None):
+        if not 'session_token' in self.__dict__:
+            raise ApiValueError("Please invoke 'session_2fa' function first")
         if quote_type is None:
             quote  =  ks_api_client.QuoteApi(self.api_client).get_instruments_details(self.consumer_key, \
                 self.session_token, instrument_token)
