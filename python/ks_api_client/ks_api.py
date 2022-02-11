@@ -30,6 +30,8 @@ class KSTradeApi():
         session_init = None
         if host:
             hosts = [host]
+        else:
+            hosts = ["https://tradeapi.kotaksecurities.com/apim","https://ctradeapi.kotaksecurities.com/apim"]
         for host in hosts:
             self.host = host
             configuration  =  self.get_config(proxy_url, proxy_user, proxy_pass)
