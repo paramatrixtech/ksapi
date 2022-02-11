@@ -1,13 +1,14 @@
 # ks_api_client.StreamingApi
 
-All URIs are relative to *https://tradeapi.kotaksecurities.com/apim*
+All URIs are relative to "host" parameter
 
-Method | Description ------------- | ------------- 
-[**subscribe**](StreamingApi.md#subscribe) | Get Margin Required for an order by amount or quantity.
-[**unsubscribe**](StreamingApi.md#unsubscribe) | Gives complete Margin Details of a Client from RMS.
+Method | Description
+------------- | ------------- 
+[**subscribe**](StreamingApi.md#subscribe) | Get streaming service subscription for specified instruments inputs
+[**unsubscribe**](StreamingApi.md#unsubscribe) | Request to unsubscribe from streaming service
 
 # **subscribe**
-> object subscribe(input_tokens, auth_token, callback, broadcast_host):
+> object subscribe(input_tokens, callback, broadcast_host):
 
 Get streaming service subscription for specified instruments inputs.
 
@@ -18,14 +19,14 @@ Get streaming service subscription for specified instruments inputs.
 from ks_api_client import ks_api 
 
 client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
-                        hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
-                        proxy_pass = '', consumer_secret = "")
-
-#First initialize session and generate session token
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 try:
-    # Get Margin Required for an order by amount or quantity.
-    client.subscribe(input_tokens="", consumer_key="", consumer_secret="", callback=print, broadcast_host="https://wstreamer.kotaksecurities.com")
+    def callback_method(message):
+        print(message)
+        print("Your logic/computation will come here.")
+    # subscribe to the streamingAPI
+    client.subscribe(input_tokens="745,754", callback=callback_method, broadcast_host="https://wstreamer.kotaksecurities.com/feed")
 except Exception as e:
     print("Exception when calling StreamingApi->subscribe: %s\n" % e)
 ```
@@ -35,10 +36,8 @@ except Exception as e:
 Name | Type | Description | Notes 
 ------------- | ------------- | ------------- | ------------- 
 **input_tokens** | **str** | Instrument tokens with comma seperated. | Example: "475,745" 
-**consumer_key** | **str** | Consumer Key | Mandatory field 
-**consumer_secret** | **str** | Consumer Secret | Mandatory field 
-**callback** | **obj** | Method object | method of function should have one mandatory parameter to accept message. Default method is print() 
-**broadcast_host** | **str** | String host URL | default value: "https://wstreamer.kotaksecurities.com/feed"
+**callback** | **obj** | Method object | method of function should have one mandatory parameter to accept message.
+**broadcast_host** | **str** | String broadcast host URL | default value: "https://wstreamer.kotaksecurities.com/feed"
 
 ### Return type
 
@@ -54,21 +53,16 @@ Request to unsubscribe from streaming service.
 
 
 ```python 
-from ks_api_client import ks_api 
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \ 
-                consumer_key = "consumer_key", ip = "IP", app_id = "app_id")
+from ks_api_client import ks_api
 
-#First initialize session and generate session token
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 try:
-    # Get Margin details.
-    client.unsubscribe() 
+    # unsubscribe to the streamingAPI
+    client.unsubscribe()
 except Exception as e: 
     print("Exception when calling StreamingApi->unsubscribe: %s\n" % e)
 ```
-
-### Return type
-
-**object**
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

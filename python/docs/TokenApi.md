@@ -1,6 +1,6 @@
 # ks_api_client.TokenApi
 
-All URIs are relative to *https://tradeapi.kotaksecurities.com/apim/oauth/1.0*
+All URIs are relative to "host" parameter
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,8 +19,7 @@ from ks_api_client import ks_api
 
 # Configure OAuth2 access token for authorization: default
 client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
-                        hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
-                        proxy_pass = '', consumer_secret = "consumer_secret")
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 #First initialize session and generate session token
 
@@ -63,8 +62,8 @@ void (empty response body)
 from ks_api_client import ks_api
 
 # Configure OAuth2 access token for authorization: default
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
-                 consumer_key = "consumer_key", ip = "IP", app_id = "app_id", consumer_secret = "consumer_secret")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 #First initialize session and generate session token
 

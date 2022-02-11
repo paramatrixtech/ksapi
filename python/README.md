@@ -46,8 +46,7 @@ from ks_api_client import ks_api
 # Defining the host is optional and defaults to https://sbx.kotaksecurities.com/apim
 # See configuration.py for a list of all supported configuration parameters.
 client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
-                        hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
-                        proxy_pass = '', consumer_secret = "")
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 					 
 # Initiate login and generate OTT
 client.login(password = "")
@@ -59,7 +58,7 @@ client.session_2fa()
 # Place an order                   
 client.place_order(order_type = "N", instrument_token = 727, transaction_type = "BUY",\
                    quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
-                   validity = "GFD", variety = "REGULAR", tag = "string")
+                   tag = "string", validity = "GFD", variety = "REGULAR")
 						
 # Modify an order
 client.modify_order(order_id = "", price = 0, quantity = 1, disclosed_quantity = 0, trigger_price = 0, validity = "GFD")
@@ -131,7 +130,6 @@ Class | Method | Description
 *MarginApi* | [**margin**](docs/MarginApi.md#margin) | Get all calculated margins.
 *PositionsApi* | [**positions**](docs/PositionsApi.md#positions) | Get&#39;s Open position.
 *QuoteApi* | [**quote**](docs/QuoteApi.md#quote_details) | Get Quote details
-*HistoricalApi* | [**history**](docs/HistoricalApi.md#history) | Get historical data.
 *StreamingApi* | [**subscribe**](docs/StreamingApi.md#subscribe) | Subscribe to streaming api of specified instrument tokens.
 *StreamingApi* | [**unsubscribe**](docs/StreamingApi.md#unsubscribe) | Unsubscribe from streaming api.
 *SessionApi* | [**logout**](docs/SessionApi.md#logout) | Invalidate Session Token

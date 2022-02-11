@@ -1,6 +1,6 @@
 # ks_api_client.ReportsApi
 
-All URIs are relative to *https://tradeapi.kotaksecurities.com/apim*
+All URIs are relative to "host" parameter
 
 Method | Description
 ------------- | -------------
@@ -23,8 +23,7 @@ else returns the order report for a client of provided order_id.
 from ks_api_client import ks_api
 
 client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
-                        hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
-                        proxy_pass = '', consumer_secret = "")
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 #First initialize session and generate session token
 try:
@@ -127,8 +126,8 @@ else returns the trade report for a client of provided order_id.
 ```python
 from ks_api_client import ks_api
 
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
-                 consumer_key = "consumer_key", ip = "IP", app_id = "app_id")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 				
 #First initialize session and generate session token
 

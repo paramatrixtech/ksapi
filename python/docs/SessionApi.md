@@ -1,6 +1,6 @@
 # ks_api_client.SessionApi
 
-All URIs are relative to *https://tradeapi.kotaksecurities.com/apim*
+All URIs are relative to "host" parameter
 
 Method | Description
 ------------- | -------------
@@ -24,9 +24,9 @@ API to initiate trading session for a User.
 from ks_api_client import ks_api
 
 #the session initializes when following constructor is called
-client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
-                        hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
-                        proxy_pass = '', consumer_secret = "")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "", ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", proxy_url = "", proxy_user = "", \ 
+                        proxy_pass = "", consumer_secret = "")
 ```
 
 ### Parameters
@@ -78,8 +78,8 @@ Authenticate userid and password to generate one time token.
 
 from ks_api_client import ks_api
 
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
-                         consumer_key = "consumer_key", ip = "IP", app_id = "app_id")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 try:
     # Login using password
@@ -156,8 +156,8 @@ API to generate final session for user based on one time token.
 
 from ks_api_client import ks_api
 
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
-                         consumer_key = "consumer_key", ip = "IP", app_id = "app_id")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 				
 try:
     # Login using password
@@ -321,8 +321,8 @@ API to invalidate final session for user.
 
 from ks_api_client import ks_api
 
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
-                         consumer_key = "consumer_key", ip = "IP", app_id = "app_id")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 #First initialize session and generate session token
 

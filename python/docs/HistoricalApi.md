@@ -1,6 +1,6 @@
 # ks_api_client.HistoricalApi
 
-All URIs are relative to *https://tradeapi.kotaksecurities.com/apim*
+All URIs are relative to "host" parameter
 
 Method | Description
 ------------- | -------------
@@ -20,8 +20,7 @@ Get Historical data
 from ks_api_client import ks_api
 
 client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
-                        hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
-                        proxy_pass = '', consumer_secret = "")
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 #First initialize session and generate session token
 

@@ -12,12 +12,11 @@ from ks_api_client.models import NewMTFOrder, NewNormalOrder, NewOrder, \
                 NewSMOrder, NewSOROrder, ExistingMTFOrder, ExistingNormalOrder, \
                 ExistingOrder, ExistingSMOrder, ExistingSOROrder, ReqMargin, \
                 UserCredentials, UserDetails, NewMISOrder, InlineObject
-from ks_api_client.settings import broadcast_host
+from ks_api_client.settings import broadcast_host, hosts
 
 class KSTradeApi():
-    def __init__(self, access_token, userid, consumer_key, ip, app_id, 
-            hosts=["https://tradeapi.kotaksecurities.com/apim","https://sbx.kotaksecurities.com/apim"],
-            proxy_url = '', proxy_user = '', proxy_pass = '', consumer_secret = None):
+    def __init__(self, access_token, userid, consumer_key, ip, app_id, host = '', proxy_url = '', \
+                proxy_user = '', proxy_pass = '', consumer_secret = None):
         self.userid  =  userid
         self.consumer_key  =  consumer_key
         self.consumer_secret = consumer_secret
@@ -29,6 +28,8 @@ class KSTradeApi():
         self._proxy_url = proxy_url
         error = None
         session_init = None
+        if host:
+            hosts = [host]
         for host in hosts:
             self.host = host
             configuration  =  self.get_config(proxy_url, proxy_user, proxy_pass)

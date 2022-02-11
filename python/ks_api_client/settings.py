@@ -1,4 +1,4 @@
-hosts = ["https://tradeapi.kotaksecurities.com/apim"]
+hosts = ["https://tradeapi.kotaksecurities.com/apim","https://ctradeapi.kotaksecurities.com/apim"]
 access_token = "----"
 userid = ""
 consumer_key = ""

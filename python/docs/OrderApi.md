@@ -1,6 +1,6 @@
 # ks_api_client.OrderApi
 
-All URIs are relative to *https://tradeapi.kotaksecurities.com/apim*
+All URIs are relative to "host" parameter
 
 Method | Description | Response Normal Order | Response SOR Order | Response MTF Order |
 ------------- | ------------- | -------------- | ---------------- | --------------- |
@@ -20,17 +20,15 @@ Place a New order
 from ks_api_client import ks_api
 
 client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
-                        hosts=["https://tradeapi.kotaksecurities.com/apim"], proxy_url = '', proxy_user = '', \ 
-                        proxy_pass = '', consumer_secret = "")
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 #First initialize session and generate session token
 
 try:
     # Place a Order
-    client.place_order(order_type = "N", instrument_token = 727,  \
-                   transaction_type = "BUY", quantity = 1, price = 0,\
-                   disclosed_quantity = 0, trigger_price = 0,\
-                   validity = "GFD", variety = "REGULAR", tag = "string")
+    client.place_order(order_type = "N", instrument_token = 727, transaction_type = "BUY", quantity = 1, price = 0, \
+                   disclosed_quantity = 0, trigger_price = 0, tag = "string", validity = "GFD", variety = "REGULAR" \ 
+                   product = "NORMAL" ,smart_order_routing="string")
 except Exception as e:
     print("Exception when calling OrderApi->place_order: %s\n" % e)
 ``` 
@@ -101,14 +99,14 @@ Modify an existing order
 ```python
 from ks_api_client import ks_api
 
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
-                         consumer_key = "consumer_key", ip = "IP", app_id = "app_id")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 #First initialize session and generate session token
 
 try:
     # Modify an existing order
-    client.modify_order(order_id = "2200922000576", quantity = 1, price = 0, \
+    client.modify_order(order_id = "2200922000576", price = 0, quantity = 1, \
                  disclosed_quantity = 0, trigger_price = 0, validity = "GFD")
 								  
 except Exception as e:
@@ -177,8 +175,8 @@ Cancel an order
 ```python
 from ks_api_client import ks_api
 
-client = ks_api.KSTradeApi(access_token = "access_token", userid = "userid", \
-                         consumer_key = "consumer_key", ip = "IP", app_id = "app_id")
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+                        host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 
 #First initialize session and generate session token
 
