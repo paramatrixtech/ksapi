@@ -1,5 +1,22 @@
 # ks_api_client.SessionApi
 
+### Settings configurations:
+- Add your configuration in settings.py file or create "settings_file" environment variable with your settings.py file path (e.g. settings_path=/etc/ksapi/settings.py).
+- Add all the required parameters in the settings.py file, then no need to pass those paramaters during KSTradeApi object creation.
+```
+access_token = ""
+userid = ""
+consumer_key = ""
+consumer_secret = ""
+ip = "127.0.0.1"
+app_id = ""
+proxy_url = ""
+proxy_user = ""
+proxy_pass = ""
+cacert_file = ""
+cacert_dir = ""
+```
+
 All URIs are relative to "host" parameter
 
 Method | Description
@@ -29,6 +46,13 @@ client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "", ip
                         proxy_pass = "", consumer_secret = "")
 ```
 
+Or if the settings.py file is properly configured with required paramaters:
+```python
+from ks_api_client import ks_api
+
+#the session initializes when following constructor is called
+client = ks_api.KSTradeApi()
+```
 ### Parameters
 
 Name | Type | Description  | Notes

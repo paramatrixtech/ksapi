@@ -7,11 +7,14 @@ import logging
 import multiprocessing
 import sys
 import urllib3
+import os
 
 import six
 from six.moves import http_client as httplib
 from ks_api_client.exceptions import ApiValueError
 
+from dotenv import find_dotenv, load_dotenv
+from ks_api_client import settings
 
 JSON_SCHEMA_VALIDATION_KEYWORDS = {
     'multipleOf', 'maximum', 'exclusiveMaximum',
@@ -77,6 +80,8 @@ class Configuration(object):
                  disabled_client_side_validations="",
                  server_index=None, server_variables=None,
                  server_operation_index=None, server_operation_variables=None,
+                 userid = None, access_token = None, consumer_key = None, consumer_secret = None, ip = None, app_id = "",
+                 proxy_url = None, proxy_user = None, proxy_pass = None
                  ):
         """Constructor
         """
@@ -177,6 +182,28 @@ class Configuration(object):
         """
         # Enable client side validation
         self.client_side_validation = True
+
+        self.access_token = access_token
+
+        self.userid = userid
+
+        self.consumer_key = consumer_key
+
+        self.consumer_secret = consumer_secret
+
+        self.ip = ip
+
+        self.app_id = app_id
+
+        self.proxy_url = proxy_url
+
+        self.proxy_user = proxy_user
+
+        self.proxy_pass = proxy_pass
+
+        self.cacert_file = None
+
+        self.cacert_dir = None
 
     def __deepcopy__(self, memo):
         cls = self.__class__
@@ -433,3 +460,92 @@ class Configuration(object):
         """Fix base path."""
         self._base_path = value
         self.server_index = None
+    
+    # Get from environment
+    def gfe(self, key, default=None):
+        """
+        Get value of supplied key from environment. If it is not found, and default
+        value to be supplied is provided, then return that.
+        """
+        if default is None:
+            try:
+                return os.environ[key]
+            except KeyError:
+                pass
+        return os.environ.get(key, default)
+    
+    def set_configuration_from_settings(self):
+        settings_file = self.gfe('settings_file')
+        if settings_file:
+            try:
+                if find_dotenv(settings_file):
+                    load_dotenv(settings_file, override=True)
+                else:
+                    raise FileNotFoundError("settings_file not found at %s"%settings_file)
+            except Exception as error:
+                raise error
+        if self.access_token is None:
+            if self.gfe('access_token'):
+                self.access_token = self.gfe('access_token')
+            else:
+                self.access_token = settings.access_token
+        if self.userid is None:
+            if self.gfe('userid'):
+                self.userid = self.gfe('userid')
+            else:
+                self.userid = settings.userid
+        if self.consumer_key is None:
+            if self.gfe('consumer_key'):
+                self.consumer_key = self.gfe('consumer_key')
+            else:
+                self.consumer_key = settings.consumer_key
+        if self.ip is None:
+            if self.gfe('ip'):
+                self.ip = self.gfe('ip')
+            else:
+                self.ip = settings.ip
+        if self.app_id is None:
+            if self.gfe('app_id'):
+                self.app_id = self.gfe('app_id')
+            else:
+                self.app_id = settings.app_id
+        if self.proxy_url is None:
+            if self.gfe('proxy_url'):
+                self.proxy_url = self.gfe('proxy_url')
+            else:
+                self.proxy_url = settings.proxy_url
+        if self.proxy_user is None:
+            if self.gfe('proxy_user'):
+                self.proxy_user = self.gfe('proxy_user')
+            else:
+                self.proxy_user = settings.proxy_user
+        if self.proxy_pass is None:
+            if self.gfe('proxy_pass'):
+                self.proxy_pass = self.gfe('proxy_pass')
+            else:
+                self.proxy_pass = settings.proxy_pass
+        if self.consumer_secret is None:
+            if self.gfe('consumer_secret'):
+                self.consumer_secret = self.gfe('consumer_secret')
+            else:
+                self.consumer_secret = settings.consumer_secret
+        if self.ssl_ca_cert is None:
+            if self.gfe('cacert_file'):
+                self.ssl_ca_cert = self.gfe('cacert_file')
+            else:
+                self.ssl_ca_cert = settings.cacert_file
+        if self.cacert_dir is None and not self.ssl_ca_cert:
+            if self.gfe('cacert_dir'):
+                self.cacert_dir = self.gfe('cacert_dir')
+            else:
+                self.cacert_dir = settings.cacert_dir
+        if self.ssl_ca_cert or self.cacert_dir:
+            self.verify_ssl = True
+
+    def validate_configuration(self):
+        if not self.access_token:
+            raise ApiValueError("Please provide the access_token paramater while creating KSTradeApi object, or supply in settings file. Without access_token the API cannot be accessed.")
+        if not self.userid:
+            raise ApiValueError("Please provide the userid paramater while creating KSTradeApi object, or supply in settings file. Without userid the API cannot be accessed.")
+        if not self.consumer_key:
+            raise ApiValueError("Please provide the consumer_key paramater while creating KSTradeApi object, or supply in settings file. Without consumer_key the API cannot be accessed.")

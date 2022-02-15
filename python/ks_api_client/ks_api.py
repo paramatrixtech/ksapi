@@ -12,29 +12,37 @@ from ks_api_client.models import NewMTFOrder, NewNormalOrder, NewOrder, \
                 NewSMOrder, NewSOROrder, ExistingMTFOrder, ExistingNormalOrder, \
                 ExistingOrder, ExistingSMOrder, ExistingSOROrder, ReqMargin, \
                 UserCredentials, UserDetails, NewMISOrder, InlineObject
-from ks_api_client.settings import broadcast_host, hosts
+from ks_api_client.settings import broadcast_host
 
 class KSTradeApi():
-    def __init__(self, access_token, userid, consumer_key, ip, app_id, host = '', proxy_url = '', \
-                proxy_user = '', proxy_pass = '', consumer_secret = None):
-        self.userid  =  userid
-        self.consumer_key  =  consumer_key
-        self.consumer_secret = consumer_secret
-        self.ip  =  ip
-        self.app_id  =  app_id
-        self.access_token  =  access_token
-        self._proxy_user = proxy_user
-        self._proxy_pass = proxy_pass
-        self._proxy_url = proxy_url
+    def __init__(self, access_token = None, userid = None, consumer_key = None, ip = None, app_id = "", host = None, proxy_url = None, \
+                proxy_user = None, proxy_pass = None, consumer_secret = None):
         error = None
         session_init = None
         if host:
             hosts = [host]
         else:
-            hosts = ["https://tradeapi.kotaksecurities.com/apim","https://ctradeapi.kotaksecurities.com/apim"]
+            hosts = ["https://tradeapi.kotaksecurities.com/apim","https://ctradeapi.kotaksecurities.com/apim","https://sbx.kotaksecurities.com/apim"]
         for host in hosts:
             self.host = host
-            configuration  =  self.get_config(proxy_url, proxy_user, proxy_pass)
+            configuration  =  ks_api_client.Configuration( host = host, userid = userid, access_token = access_token, consumer_key = consumer_key, \
+                                                            consumer_secret = consumer_secret, ip = ip, app_id = app_id, proxy_user = proxy_user, \
+                                                            proxy_pass = proxy_pass, proxy_url = proxy_url )
+            configuration.set_configuration_from_settings()
+            configuration.validate_configuration()
+            if configuration.proxy_url:
+                configuration.proxy = configuration.proxy_url
+                if configuration.proxy_user:
+                    configuration.proxy_headers = make_headers(proxy_basic_auth = ':'.join((configuration.proxy_user,configuration.proxy_pass)))
+            self.userid  =  configuration.userid
+            self.access_token  =  configuration.access_token
+            self.consumer_key  =  configuration.consumer_key
+            self.consumer_secret = configuration.consumer_secret
+            self.ip  =  configuration.ip
+            self.app_id  =  configuration.app_id
+            self._proxy_user = configuration.proxy_user
+            self._proxy_pass = configuration.proxy_pass
+            self._proxy_url = configuration.proxy_url
             try:
                 self.api_client  =  ks_api_client.ApiClient(configuration)
                 session_init_res  =  ks_api_client.SessionApi(self.api_client).session_init(self.userid, \
@@ -348,8 +356,8 @@ class KSTradeApi():
 
     def subscribe(self, input_tokens, callback, broadcast_host=broadcast_host):
         try:
-            if self.consumer_secret == None:
-                raise ApiValueError("Please pass the consumer secret while creating client")
+            if self.consumer_secret == None or not self.consumer_secret:
+                raise ApiValueError("Please provide the consumer_secret paramater while creating KSTradeApi object or supply in settings file.")
             proxy = ""
             auth_token = self.consumer_key+":"+self.consumer_secret
             session = requests.session()
