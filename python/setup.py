@@ -10,7 +10,7 @@ VERSION = "1.1.0"
 #
 # prerequisite: setuptools http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["certifi>=14.05.14", "six >= 1.10", "python_dateutil >= 2.5.3", "urllib3 > 1.15", "python-socketio[client]==5.3.0","requests==2.26.0"]
+REQUIRES = ["certifi>=14.05.14", "six >= 1.10", "python_dateutil >= 2.5.3", "urllib3 > 1.15", "python-socketio[client]==5.3.0","requests==2.26.0", "python-dotenv==0.19.2"]
 
 setup(
     name=NAME,
