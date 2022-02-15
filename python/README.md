@@ -24,7 +24,7 @@ import ks_api_client
 ```
 
 ### Settings configurations:
-- Add your configuration in settings.py file or create "settings_file" environment variable with your settings.py file path (e.g. settings_path=/etc/ksapi/settings.py).
+- Add your configuration in settings.py file or create "settings_file" environment variable with your settings.py file path e.g. settings_path=/etc/ksapi/settings.py (for linux) or settings_path=C:\\\Users\\\ksapi\\\Desktop\\\settings.py (for Windows).
 - Add all the required parameters in the settings.py file, then no need to pass those paramaters during KSTradeApi object creation.
 
 
