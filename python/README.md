@@ -110,7 +110,8 @@ client.quote(instrument_token = "110")
 client.quote(instrument_token = "727-1250")
 
 
-# Subscribe to instrument token's stream.
+# Websocket: 
+# Subscribe to instrument token stream:
 def callback_method(message):
     print(message)
     print("Your logic/computation will come here.")
