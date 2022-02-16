@@ -50,7 +50,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 from ks_api_client import ks_api
 # Defining the host is optional and defaults to https://sbx.kotaksecurities.com/apim
 # See configuration.py for a list of all supported configuration parameters.
-client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "", \
+client = ks_api.KSTradeApi(access_token = "", userid = "", consumer_key = "",ip = "127.0.0.1", app_id = "test", \
                         host = "https://tradeapi.kotaksecurities.com/apim", consumer_secret = "")
 					 
 # Initiate login and generate OTT
@@ -60,7 +60,9 @@ client.login(password = "")
 client.session_2fa()
 #You can choose to use a day-to-day access code by adding accesscode parameter : client.session_2fa(access_code = "")
 
-# Place an order                   
+# Place an order. 
+# Order_type can be "N", "MIS", "MTF". "SOR". Set variety as "AMO" for post-market orders. 
+# Please check detailed documentation (see bottom of page) for more details on each variable.                   
 client.place_order(order_type = "N", instrument_token = 727, transaction_type = "BUY",\
                    quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
                    tag = "string", validity = "GFD", variety = "REGULAR")
@@ -71,39 +73,42 @@ client.modify_order(order_id = "", price = 0, quantity = 1, disclosed_quantity =
 # Cancel an order
 client.cancel_order(order_id = "")
 
-# Get Report Orders
+# Get Order Book
 client.order_report()
 
-# Get Report Orders for order id
+# Get Detailed Order Report for specific order id [equity] . 
 client.order_report(order_id = "")
 
-# Get FNO Report Orders for order id
+# Get Detailed Order Report for specific order id [FNO] .
 client.order_report(order_id = "", is_fno = "Y")
 
-# Get Trade Report
+# Get Trade Book
 client.trade_report()
 
-# Get Trade Report for order id
+# Get Detailed Trade Report for specific order id [equity] . 
 client.trade_report(order_id = "")
 
-# Get FNO Trade Report for order id
+# Get Detailed Trade Report for specific order id [FNO] .
 client.trade_report(order_id = "", is_fno = "Y")
 
-# Get Margin required
+# Get Margin required for Equity orders. 
 order_info = [
     {"instrument_token": 727, "quantity": 1, "price": 1300, "amount": 0, "trigger_price": 1190},
     {"instrument_token": 1374, "quantity": 1, "price": 1200, "amount": 0, "trigger_price": 1150}
 ]
 client.margin_required(transaction_type = "BUY",order_info = order_info)
 
-# Get Margin
+# Get Available Margin
 client.margin()
 
-# Get Positions
+# Get Positions. position_type can be "TODAYS", "OPEN", "STOCKS".
 client.positions(position_type = "TODAYS")
 
-# Get Quote details
-client.quote(instrument_token = 110)
+# Get Quote details. 
+client.quote(instrument_token = "110")
+# Separate tokens by a hyphen for quote for multiple tokens at once. 
+client.quote(instrument_token = "727-1250")
+
 
 # Subscribe to instrument token's stream.
 def callback_method(message):
