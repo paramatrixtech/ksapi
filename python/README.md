@@ -106,7 +106,7 @@ client.positions(position_type = "TODAYS")
 
 # Get Quote details. 
 client.quote(instrument_token = "110")
-# Separate tokens by a hyphen for quote for multiple tokens at once. 
+# Get Quotes for multiple tokens at once. Separate tokens by a hyphen. 
 client.quote(instrument_token = "727-1250")
 
 
