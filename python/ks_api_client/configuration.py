@@ -539,8 +539,7 @@ class Configuration(object):
                 self.cacert_dir = self.gfe('cacert_dir')
             else:
                 self.cacert_dir = settings.cacert_dir
-        if self.ssl_ca_cert or self.cacert_dir:
-            self.verify_ssl = True
+        self.verify_ssl = True
 
     def validate_configuration(self):
         if not self.access_token:

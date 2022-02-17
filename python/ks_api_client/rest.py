@@ -57,8 +57,7 @@ class RESTClientObject(object):
             ca_certs = configuration.ssl_ca_cert
         else:
             # if not set certificate file, use Mozilla's root certificates.
-            # ca_certs = certifi.where()
-            ca_certs = ""
+            ca_certs = certifi.where()
         if not configuration.ssl_ca_cert and configuration.cacert_dir:
             ca_cert_dir = configuration.cacert_dir
         else:
