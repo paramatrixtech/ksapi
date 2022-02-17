@@ -13,7 +13,7 @@ import six
 from six.moves import http_client as httplib
 from ks_api_client.exceptions import ApiValueError
 
-from dotenv import find_dotenv, load_dotenv
+from dotenv import load_dotenv
 from ks_api_client import settings
 
 JSON_SCHEMA_VALIDATION_KEYWORDS = {
@@ -478,10 +478,7 @@ class Configuration(object):
         settings_file = self.gfe('settings_file')
         if settings_file:
             try:
-                if find_dotenv(settings_file):
-                    load_dotenv(settings_file, override=True)
-                else:
-                    raise FileNotFoundError("settings_file not found at %s"%settings_file)
+                load_dotenv(settings_file, override=True)
             except Exception as error:
                 raise error
         if self.access_token is None:
