@@ -111,11 +111,19 @@ client.quote(instrument_token = "727-1250")
 
 
 # Websocket: 
-# Subscribe to instrument token stream:
+
+# Subscribe to instrument price feed:
 def callback_method(message):
     print(message)
     print("Your logic/computation will come here.")
 client.subscribe(input_tokens="745,754", callback=callback_method)
+
+# Subscribe to order status updates (instrument token supplied in function is merely a placeholder and serves no purpose here): 
+def callback_method(message):
+    print(message)
+    print("Your logic/computation will come here.")
+client.subscribe(input_tokens="727", callback=callback_method, broadcast_host="https://wstreamer.kotaksecurities.com/feed/orders")
+
 
 # Unsubscribe from streaming service.
 client.unsubscribe()
