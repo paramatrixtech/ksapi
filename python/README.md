@@ -44,7 +44,7 @@ import ks_api_client
 
 ## Getting Started
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+Please follow the [installation procedure](#installation--usage) and then refer to the sample code below for various API requests:
 
 ```python
 from ks_api_client import ks_api
