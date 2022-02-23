@@ -37,7 +37,7 @@ Name | Type | Description | Notes
 ------------- | ------------- | ------------- | ------------- 
 **input_tokens** | **str** | Instrument tokens with comma seperated. | Example: "475,745" 
 **callback** | **obj** | Method object | method of function should have one mandatory parameter to accept message.
-**broadcast_host** | **str** | String broadcast host URL | For price feed: "https://wstreamer.kotaksecurities.com/feed" (default),        For order status updates: "https://wstreamer.kotaksecurities.com/feed/orders"
+**broadcast_host** | **str** | String broadcast host URL | URL for price feed: "https://wstreamer.kotaksecurities.com/feed" (default), and for order status updates: "https://wstreamer.kotaksecurities.com/feed/orders"
 
 ### Return type
 
