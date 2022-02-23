@@ -35,7 +35,7 @@ except Exception as e:
 
 Name | Type | Description | Notes 
 ------------- | ------------- | ------------- | ------------- 
-**input_tokens** | **str** | Instrument tokens with comma seperated. | Example: "475,745" 
+**input_tokens** | **str** | Instrument tokens (comma seperated with no spaces). | Example: "475,745" 
 **callback** | **obj** | Method object | method of function should have one mandatory parameter to accept message.
 **broadcast_host** | **str** | String broadcast host URL | URL for price feed: "https://wstreamer.kotaksecurities.com/feed" (default), and for order status updates: "https://wstreamer.kotaksecurities.com/feed/orders"
 
