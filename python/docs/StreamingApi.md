@@ -43,6 +43,34 @@ Name | Type | Description | Notes
 
 **object**
 
+### Response Structure
+
+Index | Description
+------------- | -------------
+0| -
+1| -
+2| Best buy price
+3| Best buy quantity
+4| Best sell price
+5| Best sell quantity
+6| Last trade price
+7| High price
+8| Low price
+9| Average trade price
+10| Closing price
+11| Open price
+12| Net change percentage
+13| Total sell quantity
+14| Total buy quantity
+15| Total trade quantity
+16| Open Interest
+17| Total trade value
+18| Last trade quantity
+19| Last trade time
+20| Net change
+21| Upper circuit limit
+22| Lower circuit limit
+
 
 # **unsubscribe**
 > object unsubscribe()
