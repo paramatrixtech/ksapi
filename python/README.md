@@ -118,7 +118,8 @@ def callback_method(message):
     print("Your logic/computation will come here.")
 client.subscribe(input_tokens="745,754", callback=callback_method)
 
-# Subscribe to order status updates (instrument token supplied in function is merely a placeholder and serves no purpose here): 
+# Subscribe to order status update websocket
+# (instrument token supplied in function is merely a placeholder and serves no purpose here): 
 def callback_method(message):
     print(message)
     print("Your logic/computation will come here.")
