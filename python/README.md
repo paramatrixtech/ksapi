@@ -119,7 +119,7 @@ def callback_method(message):
 client.subscribe(input_tokens="745,754", callback=callback_method)
 # Response structure: 
 # ignore, ignore, Best buy price, Best buy quantity, Best sell price, Best sell quantity, Last trade price, High price, Low price, 
-# Average trade price, Closing price, Open price, Net change percentage, Total sell quantity, Total buy quantity, Total trade quantity, 
+# Average trade price, Closing price, Open price, Net change percentage, Total sell quantity, Total buy quantity, Total trade qty, 
 # Open Interest, Total trade value, Last trade quantity, Last trade time, Net change, Upper circuit limit, Lower circuit limit
 
 # Subscribe to order status update websocket
