@@ -118,9 +118,9 @@ def callback_method(message):
     print("Your logic/computation will come here.")
 client.subscribe(input_tokens="745,754", callback=callback_method)
 # Response structure: 
-# ignore, ignore, Best buy price, Best buy quantity, Best sell price, Best sell quantity, Last trade price, High price, Low price, Average trade price,
-# Closing price, Open price, Net change percentage, Total sell quantity, Total buy quantity, Total trade quantity, Open Interest,
-# Total trade value, Last trade quantity, Last trade time, Net change, Upper circuit limit, Lower circuit limit
+# ignore, ignore, Best buy price, Best buy quantity, Best sell price, Best sell quantity, Last trade price, High price, Low price, 
+# Average trade price, Closing price, Open price, Net change percentage, Total sell quantity, Total buy quantity, Total trade quantity, 
+# Open Interest, Total trade value, Last trade quantity, Last trade time, Net change, Upper circuit limit, Lower circuit limit
 
 # Subscribe to order status update websocket
 # (instrument token supplied in function is merely a placeholder and serves no purpose here): 
