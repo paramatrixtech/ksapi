@@ -37,7 +37,7 @@ except Exception as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**order_type** | **str**| Type of the order - O(Order), N(NormalOrder), SM(Super Multiple Order), SOR(Smart Order Routing Order), MTF(Margin Trading Facility Order), MIS(Margin Intraday Sqaure-Off)|
+**order_type** | **str**| Type of the order - N(NormalOrder), SOR(Smart Order Routing Order), MTF(Margin Trading Facility Order), MIS(Margin Intraday Sqaure-Off)|
 **instrument_token** | **int** | Instrument token of the scrip to be traded.<br> Instrument tokens can be found at the following urls (NOTE: Please replace DD_MM_YYYY with the latest date for updated instrument tokens, for example 27_05_2021 will give tokens for 27 may):<br> Equity: https://preferred.kotaksecurities.com/security/production/TradeApiInstruments_Cash_DD_MM_YYYY.txt <br> Derivatives: https://preferred.kotaksecurities.com/security/production/TradeApiInstruments_FNO_DD_MM_YYYY.txt |
 **transaction_type** | **str** | Transaction Type - BUY or SELL |
 **quantity** | **int** | Order quantity - specified in same unit as quoted in market depth |
