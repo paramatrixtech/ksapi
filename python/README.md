@@ -62,7 +62,10 @@ client.session_2fa()
 
 # Place an order. 
 # Order_type can be "N", "MIS", "MTF". "SOR". Set variety as "AMO" for post-market orders. 
-# Please check detailed documentation (see bottom of page) for more details on each variable.                   
+# Please check detailed documentation (see bottom of page) for more details on each variable. 
+# Instrument tokens can be found at the following urls (NOTE: Please replace DD_MM_YYYY with the latest date for updated instrument tokens, for example 27_05_2021 will give tokens for 27 may):
+# Equity: https://preferred.kotaksecurities.com/security/production/TradeApiInstruments_Cash_DD_MM_YYYY.txt
+# Derivatives: https://preferred.kotaksecurities.com/security/production/TradeApiInstruments_FNO_DD_MM_YYYY.txt
 client.place_order(order_type = "N", instrument_token = 727, transaction_type = "BUY",\
                    quantity = 1, price = 0, disclosed_quantity = 0, trigger_price = 0,\
                    tag = "string", validity = "GFD", variety = "REGULAR")
