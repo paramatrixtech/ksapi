@@ -354,7 +354,7 @@ class KSTradeApi():
         return new_array
 
 
-    def subscribe(self, input_tokens, callback, broadcast_host=broadcast_host):
+    def subscribe(self, input_tokens, callback, broadcast_host=broadcast_host, **kwargs):
         try:
             if self.consumer_secret == None or not self.consumer_secret:
                 raise ApiValueError("Please provide the consumer_secret paramater while creating KSTradeApi object or supply in settings file.")
@@ -386,9 +386,11 @@ class KSTradeApi():
             if 'result' in jsonResponse and 'token' in jsonResponse['result'] and jsonResponse['result']['token']:
                 parsed_broadcast_host = urllib.parse.urlparse(broadcast_host)
                 socketio_path = parsed_broadcast_host.path
+                engineio_logger_bool = kwargs.get("engineio_logger", True)
+                logger_bool = kwargs.get("logger", True)
                 self.sio = socketio.Client(
-                    reconnection=True, request_timeout=20, reconnection_attempts=5, engineio_logger=True,
-                            logger=True,http_session=session, ssl_verify=session.verify)
+                    reconnection=True, request_timeout=20, reconnection_attempts=5, engineio_logger=engineio_logger_bool,
+                            logger=logger_bool,http_session=session, ssl_verify=session.verify)
 
                 @self.sio.event
                 def connect():
